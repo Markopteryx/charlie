@@ -46,7 +46,8 @@ export const POST = async (req: NextRequest) => {
   const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX!);
 
   const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
-    pineconeIndex, namespace: file.id
+    pineconeIndex,
+    namespace: file.id
   });
 
   const results = await vectorStore.similaritySearch(message, 4);
@@ -84,9 +85,9 @@ export const POST = async (req: NextRequest) => {
             
             PREVIOUS CONVERSATION:
             ${formattedPrevMessages.map((message) => {
-          if (message.role === 'user') return `User: ${message.content}\n`;
-          return `Assistant: ${message.content}\n`;
-        })}
+              if (message.role === 'user') return `User: ${message.content}\n`;
+              return `Assistant: ${message.content}\n`;
+            })}
             
             \n----------------\n
             
