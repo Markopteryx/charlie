@@ -1,10 +1,10 @@
-import { trpc } from "@/app/_trpc/client";
-import { Loader2, MessageSquare } from "lucide-react";
-import Skeleton from "react-loading-skeleton";
-import Message from "./Message";
-import { useContext, useEffect, useRef } from "react";
-import { ChatContext } from "./ChatContext";
-import { useIntersection } from "@mantine/hooks";
+import { trpc } from '@/app/_trpc/client';
+import { useIntersection } from '@mantine/hooks';
+import { Loader2, MessageSquare } from 'lucide-react';
+import { useContext, useEffect, useRef } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import { ChatContext } from './ChatContext';
+import Message from './Message';
 
 interface MessagesProps {
   fileId: string;
@@ -17,11 +17,11 @@ const Messages = ({ fileId }: MessagesProps) => {
     trpc.getFileMessages.useInfiniteQuery(
       {
         fileId,
-        limit: 10,
+        limit: 10
       },
       {
         getNextPageParam: (lastPage) => lastPage?.nextCursor,
-        keepPreviousData: true,
+        keepPreviousData: true
       }
     );
 
@@ -29,25 +29,25 @@ const Messages = ({ fileId }: MessagesProps) => {
 
   const loadingMessage = {
     createdAt: new Date().toISOString(),
-    id: "loading-message",
+    id: 'loading-message',
     isUserMessage: false,
     text: (
       <span className="flex h-full items-center justify-center">
         <Loader2 className="h-4 w-4 animate-spin" />
       </span>
-    ),
+    )
   };
 
   const combinedMessages = [
     ...(isAiThinking ? [loadingMessage] : []),
-    ...(messages ?? []),
+    ...(messages ?? [])
   ];
 
   const lastMessageRef = useRef<HTMLDivElement>(null);
 
   const { ref, entry } = useIntersection({
     root: lastMessageRef.current,
-    threshold: 1,
+    threshold: 1
   });
 
   useEffect(() => {

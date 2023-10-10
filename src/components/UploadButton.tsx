@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { Dialog } from "@radix-ui/react-dialog";
-import { useState } from "react";
-import { DialogContent, DialogTrigger } from "./ui/dialog";
-import { Button } from "./ui/button";
-import { Progress } from "./ui/progress";
+import { Dialog } from '@radix-ui/react-dialog';
+import { useState } from 'react';
+import { Button } from './ui/button';
+import { DialogContent, DialogTrigger } from './ui/dialog';
+import { Progress } from './ui/progress';
 
-import Dropzone from "react-dropzone";
-import { Cloud, File, Loader2 } from "lucide-react";
-import { useUploadThing } from "@/lib/uploadthing";
-import { useToast } from "./ui/use-toast";
-import { trpc } from "@/app/_trpc/client";
-import { useRouter } from "next/navigation";
+import { trpc } from '@/app/_trpc/client';
+import { useUploadThing } from '@/lib/uploadthing';
+import { Cloud, File, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import Dropzone from 'react-dropzone';
+import { useToast } from './ui/use-toast';
 
 const UploadDropzone = () => {
   const router = useRouter();
@@ -20,14 +20,14 @@ const UploadDropzone = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const { toast } = useToast();
 
-  const { startUpload } = useUploadThing("pdfUploader");
+  const { startUpload } = useUploadThing('pdfUploader');
 
   const { mutate: startPolling } = trpc.getFile.useMutation({
     onSuccess: (file) => {
       router.push(`/dashboard/${file.id}`);
     },
     retry: true,
-    retryDelay: 500,
+    retryDelay: 500
   });
 
   const startSimulatedProgress = () => {
@@ -58,9 +58,9 @@ const UploadDropzone = () => {
 
         if (!res) {
           return toast({
-            title: "Something went wrong",
-            description: "Please try again later",
-            variant: "destructive",
+            title: 'Something went wrong',
+            description: 'Please try again later',
+            variant: 'destructive'
           });
         }
 
@@ -70,9 +70,9 @@ const UploadDropzone = () => {
 
         if (!key) {
           return toast({
-            title: "Something went wrong",
-            description: "Please try again later",
-            variant: "destructive",
+            title: 'Something went wrong',
+            description: 'Please try again later',
+            variant: 'destructive'
           });
         }
 
@@ -116,7 +116,7 @@ const UploadDropzone = () => {
                 <div className="w-full mt-4 max-w-xs mx-auto">
                   <Progress
                     indicatorColor={
-                      uploadProgress === 100 ? "bg-green-500" : ""
+                      uploadProgress === 100 ? 'bg-green-500' : ''
                     }
                     value={uploadProgress}
                     className="h-1 w-full bg-zinc-200"

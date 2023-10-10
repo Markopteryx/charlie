@@ -1,28 +1,28 @@
-"use client";
+'use client';
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { trpc } from "../_trpc/client";
-import { Loader2 } from "lucide-react";
+import { Loader2 } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { trpc } from '../_trpc/client';
 
 const Page = () => {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const origin = searchParams.get("origin");
+  const origin = searchParams.get('origin');
 
   trpc.authCallback.useQuery(undefined, {
     onSuccess: ({ success }) => {
       if (success) {
-        router.push(origin ? `/${origin}` : "/dashboard");
+        router.push(origin ? `/${origin}` : '/dashboard');
       }
     },
     onError: (err) => {
-      if (err.data?.code === "UNAUTHORIZED") {
-        router.push("/sign-in");
+      if (err.data?.code === 'UNAUTHORIZED') {
+        router.push('/sign-in');
       }
     },
     retry: true,
-    retryDelay: 500,
+    retryDelay: 500
   });
 
   return (

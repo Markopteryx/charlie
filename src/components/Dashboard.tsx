@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { trpc } from "@/app/_trpc/client";
-import UploadButton from "./UploadButton";
-import { Ghost, Loader2, MessageSquare, Plus, Trash } from "lucide-react";
-import Skeleton from "react-loading-skeleton";
-import Link from "next/link";
-import { format } from "date-fns";
-import { Button } from "./ui/button";
-import { useState } from "react";
+import { trpc } from '@/app/_trpc/client';
+import { format } from 'date-fns';
+import { Ghost, Loader2, MessageSquare, Plus, Trash } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import UploadButton from './UploadButton';
+import { Button } from './ui/button';
 
 const Dashboard = () => {
   const [currentDeletingFile, setCurrentlyDeletingFile] = useState<
@@ -27,7 +27,7 @@ const Dashboard = () => {
     },
     onSettled() {
       setCurrentlyDeletingFile(null);
-    },
+    }
   });
 
   return (
@@ -70,7 +70,7 @@ const Dashboard = () => {
                 <div className="px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-500">
                   <div className="flex items-centre gap-2">
                     <Plus className="h-4 w-4" />
-                    {format(new Date(file.createdAt), "MMM yyyy")}
+                    {format(new Date(file.createdAt), 'MMM yyyy')}
                   </div>
 
                   <div className="flex items-centre gap-2">

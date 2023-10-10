@@ -1,8 +1,8 @@
-import ChatWrapper from "@/components/chat/ChatWrapper";
-import PDFRenderer from "@/components/PDFRenderer";
-import { db } from "@/db";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { notFound, redirect } from "next/navigation";
+import ChatWrapper from '@/components/chat/ChatWrapper';
+import PDFRenderer from '@/components/PDFRenderer';
+import { db } from '@/db';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { notFound, redirect } from 'next/navigation';
 
 interface PageProps {
   params: {
@@ -21,8 +21,8 @@ const Page = async ({ params }: PageProps) => {
   const file = await db.file.findFirst({
     where: {
       id: fileid,
-      userId: user.id,
-    },
+      userId: user.id
+    }
   });
 
   if (!file) notFound();

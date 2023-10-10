@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { trpc } from "@/app/_trpc/client";
-import ChatInput from "./ChatInput";
-import Messages from "./Messages";
-import { ChevronLeft, Loader2, XCircle } from "lucide-react";
-import Link from "next/link";
-import { buttonVariants } from "../ui/button";
-import { ChatContextProvider } from "./ChatContext";
+import { trpc } from '@/app/_trpc/client';
+import { ChevronLeft, Loader2, XCircle } from 'lucide-react';
+import Link from 'next/link';
+import { buttonVariants } from '../ui/button';
+import { ChatContextProvider } from './ChatContext';
+import ChatInput from './ChatInput';
+import Messages from './Messages';
 
 interface ChatWrapperProps {
   fileId: string;
@@ -16,11 +16,11 @@ interface ChatWrapperProps {
 const ChatWrapper = ({ fileId, isSubscribed }: ChatWrapperProps) => {
   const { data, isLoading } = trpc.getFileUploadStatus.useQuery(
     {
-      fileId,
+      fileId
     },
     {
       refetchInterval: (data) =>
-        data?.status === "SUCCESS" || data?.status === "FAILED" ? false : 500,
+        data?.status === 'SUCCESS' || data?.status === 'FAILED' ? false : 500
     }
   );
 
@@ -41,7 +41,7 @@ const ChatWrapper = ({ fileId, isSubscribed }: ChatWrapperProps) => {
       </div>
     );
 
-  if (data?.status === "PROCESSING")
+  if (data?.status === 'PROCESSING')
     return (
       <div className="relative min-h-full bg-zinc-50 flex divide-y divide-zinc-200 flex-col justify-between gap-2">
         <div className="flex-1 flex justify-center items-center flex-col mb-28">
@@ -56,7 +56,7 @@ const ChatWrapper = ({ fileId, isSubscribed }: ChatWrapperProps) => {
       </div>
     );
 
-  if (data?.status === "FAILED")
+  if (data?.status === 'FAILED')
     return (
       <div className="relative min-h-full bg-zinc-50 flex divide-y divide-zinc-200 flex-col justify-between gap-2">
         <div className="flex-1 flex justify-center items-center flex-col mb-28">
@@ -66,8 +66,8 @@ const ChatWrapper = ({ fileId, isSubscribed }: ChatWrapperProps) => {
             <Link
               href="/dashboard"
               className={buttonVariants({
-                variant: "secondary",
-                className: "mt-4",
+                variant: 'secondary',
+                className: 'mt-4'
               })}
             >
               <ChevronLeft className="h-3 w-3 mr-1.5" />

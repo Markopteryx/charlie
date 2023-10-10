@@ -1,17 +1,17 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import UpgradeButton from "@/components/UpgradeButton";
-import { buttonVariants } from "@/components/ui/button";
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import UpgradeButton from '@/components/UpgradeButton';
+import { buttonVariants } from '@/components/ui/button';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { PLANS } from "@/config/stripe";
-import { cn } from "@/lib/utils";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { ArrowRight, Check, HelpCircle, Minus } from "lucide-react";
-import Link from "next/link";
+  TooltipTrigger
+} from '@/components/ui/tooltip';
+import { PLANS } from '@/config/stripe';
+import { cn } from '@/lib/utils';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { ArrowRight, Check, HelpCircle, Minus } from 'lucide-react';
+import Link from 'next/link';
 
 const Page = () => {
   const { getUser } = getKindeServerSession();
@@ -19,57 +19,57 @@ const Page = () => {
 
   const pricingItems = [
     {
-      plan: "Free",
-      tagline: "For small side projects.",
+      plan: 'Free',
+      tagline: 'For small side projects.',
       quota: 10,
       features: [
         {
-          text: "5 pages per PDF",
-          footnote: "The maximum amount of pages per PDF-file.",
+          text: '5 pages per PDF',
+          footnote: 'The maximum amount of pages per PDF-file.'
         },
         {
-          text: "4MB file size limit",
-          footnote: "The maximum file size of a single PDF file.",
+          text: '4MB file size limit',
+          footnote: 'The maximum file size of a single PDF file.'
         },
         {
-          text: "Mobile-friendly interface",
+          text: 'Mobile-friendly interface'
         },
         {
-          text: "Higher-quality responses",
-          footnote: "Better algorithmic responses for enhanced content quality",
-          negative: true,
+          text: 'Higher-quality responses',
+          footnote: 'Better algorithmic responses for enhanced content quality',
+          negative: true
         },
         {
-          text: "Priority support",
-          negative: true,
-        },
-      ],
+          text: 'Priority support',
+          negative: true
+        }
+      ]
     },
     {
-      plan: "Pro",
-      tagline: "For larger projects with higher needs.",
-      quota: PLANS.find((p) => p.slug === "pro")!.quota,
+      plan: 'Pro',
+      tagline: 'For larger projects with higher needs.',
+      quota: PLANS.find((p) => p.slug === 'pro')!.quota,
       features: [
         {
-          text: "25 pages per PDF",
-          footnote: "The maximum amount of pages per PDF-file.",
+          text: '25 pages per PDF',
+          footnote: 'The maximum amount of pages per PDF-file.'
         },
         {
-          text: "16MB file size limit",
-          footnote: "The maximum file size of a single PDF file.",
+          text: '16MB file size limit',
+          footnote: 'The maximum file size of a single PDF file.'
         },
         {
-          text: "Mobile-friendly interface",
+          text: 'Mobile-friendly interface'
         },
         {
-          text: "Higher-quality responses",
-          footnote: "Better algorithmic responses for enhanced content quality",
+          text: 'Higher-quality responses',
+          footnote: 'Better algorithmic responses for enhanced content quality'
         },
         {
-          text: "Priority support",
-        },
-      ],
-    },
+          text: 'Priority support'
+        }
+      ]
+    }
   ];
 
   return (
@@ -93,12 +93,12 @@ const Page = () => {
               return (
                 <div
                   key={plan}
-                  className={cn("relative rounded-2xl bg-white shadow-lg", {
-                    "border-2 border-blue-600 shadow-blue-200": plan === "Pro",
-                    "border border-gray-200": plan !== "Pro",
+                  className={cn('relative rounded-2xl bg-white shadow-lg', {
+                    'border-2 border-blue-600 shadow-blue-200': plan === 'Pro',
+                    'border border-gray-200': plan !== 'Pro'
                   })}
                 >
-                  {plan === "Pro" && (
+                  {plan === 'Pro' && (
                     <div className="absolute -top-5 left-0 right-0 mx-auto w-32 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 px-3 py-2 text-sm font-medium text-white">
                       Upgrade now
                     </div>
@@ -143,8 +143,8 @@ const Page = () => {
                         {footnote ? (
                           <div className="flex items-center space-x-1">
                             <p
-                              className={cn("text-gray-600", {
-                                "text-gray-400": negative,
+                              className={cn('text-gray-600', {
+                                'text-gray-400': negative
                               })}
                             >
                               {text}
@@ -160,8 +160,8 @@ const Page = () => {
                           </div>
                         ) : (
                           <p
-                            className={cn("text-gray-600", {
-                              "text-gray-400": negative,
+                            className={cn('text-gray-600', {
+                              'text-gray-400': negative
                             })}
                           >
                             {text}
@@ -172,15 +172,15 @@ const Page = () => {
                   </ul>
                   <div className="border-t border-gray-200" />
                   <div className="p-5">
-                    {plan === "Free" ? (
+                    {plan === 'Free' ? (
                       <Link
-                        href={user ? "/dashboard" : "/sign-in"}
+                        href={user ? '/dashboard' : '/sign-in'}
                         className={buttonVariants({
-                          className: "w-full",
-                          variant: "secondary",
+                          className: 'w-full',
+                          variant: 'secondary'
                         })}
                       >
-                        {user ? "Upgrade now" : "Sign up"}
+                        {user ? 'Upgrade now' : 'Sign up'}
                         <ArrowRight className="h-5 w-5 ml-1.5" />
                       </Link>
                     ) : user ? (
@@ -189,10 +189,10 @@ const Page = () => {
                       <Link
                         href="/sign-in"
                         className={buttonVariants({
-                          className: "w-full",
+                          className: 'w-full'
                         })}
                       >
-                        {user ? "Upgrade now" : "Sign up"}
+                        {user ? 'Upgrade now' : 'Sign up'}
                         <ArrowRight className="h-5 w-5 ml-1.5" />
                       </Link>
                     )}
