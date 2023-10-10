@@ -6,6 +6,7 @@ import {
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import MaxWidthWrapper from './MaxWidthWrapper';
+import MobileNav from './MobileNav';
 import UserAccountNav from './UserAccountNav';
 import { buttonVariants } from './ui/button';
 
@@ -21,33 +22,48 @@ const Navbar = () => {
             <span>charlie.</span>
           </Link>
 
-          {/* TODO: add mobile navbar*/}
+          <MobileNav isAuth={!!user} />
+
           <div className="hidden items-center space-x-4 sm:flex">
             {!user ? (
               <>
                 <Link
-                  className={buttonVariants({ variant: 'ghost', size: 'sm' })}
                   href="/pricing"
+                  className={buttonVariants({
+                    variant: 'ghost',
+                    size: 'sm'
+                  })}
                 >
                   Pricing
                 </Link>
                 <LoginLink
-                  className={buttonVariants({ variant: 'ghost', size: 'sm' })}
+                  className={buttonVariants({
+                    variant: 'ghost',
+                    size: 'sm'
+                  })}
                 >
-                  Sign In
+                  Sign in
                 </LoginLink>
-                <RegisterLink className={buttonVariants({ size: 'sm' })}>
-                  Get Started <ArrowRight className="ml-1.5 h-5 w-5" />
+                <RegisterLink
+                  className={buttonVariants({
+                    size: 'sm'
+                  })}
+                >
+                  Get started <ArrowRight className="ml-1.5 h-5 w-5" />
                 </RegisterLink>
               </>
             ) : (
               <>
                 <Link
-                  className={buttonVariants({ variant: 'ghost', size: 'sm' })}
                   href="/dashboard"
+                  className={buttonVariants({
+                    variant: 'ghost',
+                    size: 'sm'
+                  })}
                 >
                   Dashboard
                 </Link>
+
                 <UserAccountNav
                   name={
                     !user.given_name || !user.family_name
