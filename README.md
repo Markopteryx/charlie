@@ -4,7 +4,7 @@
 
 - [ ] Dark Mode
 - [ ] Limit file selection to only PDFs
-- [ ] Fix Pinecone namespace issue
+- [x] Fix Pinecone namespace issue
 - [ ] Create title from PDF
 
 ## Tools Used
