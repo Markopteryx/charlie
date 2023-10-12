@@ -75,7 +75,7 @@ export const POST = async (req: NextRequest) => {
       {
         role: 'system',
         content:
-          'Use the following pieces of context (or previous conversaton if needed) to answer the users question in markdown format.'
+          'Use the following pieces of context (or previous conversaton if needed) to answer the users question in markdown format. Please keep your answers to 3 or less sentences.'
       },
       {
         role: 'user',
@@ -85,9 +85,9 @@ export const POST = async (req: NextRequest) => {
             
             PREVIOUS CONVERSATION:
             ${formattedPrevMessages.map((message) => {
-              if (message.role === 'user') return `User: ${message.content}\n`;
-              return `Assistant: ${message.content}\n`;
-            })}
+          if (message.role === 'user') return `User: ${message.content}\n`;
+          return `Assistant: ${message.content}\n`;
+        })}
             
             \n----------------\n
             
